@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+}
+
+a {
+    /* color: white; */
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    /* color:white; */
+    /* text-decoration:none; */
+    /* cursor: pointer; */
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    max-width: 4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.workspace {
+    width: 100%;
+}
