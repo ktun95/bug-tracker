@@ -8,7 +8,7 @@ import {
     Input,
     Box,
     Button
-  } from "@chakra-ui/core";
+  } from "@chakra-ui/react";
   import { ProjectContext } from '../context'
 
 const ProjectForm = () => {

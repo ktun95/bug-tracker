@@ -8,68 +8,72 @@ import {
   Button,
   Text,
   Flex,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator } from "@chakra-ui/core"
-// import {
-//   Breadcrumb,
-//   BreadcrumbItem,
-//   BreadcrumbLink,
-//   BreadcrumbSeparator,
-// } from "@chakra-ui/react"
-import {IssueForm, Issues} from '../components/'
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuIcon,
+  MenuCommand,
+  MenuDivider,
+ } from '@chakra-ui/react'
+import {IssueForm, Issues, Bucket} from '../components/'
 import { IssueContext, UserContext } from '../context'
-
-const BreadcrumbNameMap = {
-  '/dashboard': 'Dashboard',
-  '/dashboard/issues': 'Issues',
-  '/dashboard/issues/create': 'Create',
-  '/dashboard/resolved': 'Resolved',
-}
 
 const Dashboard = ({isLoggedIn}) => {
   const { currentUser } = useContext(UserContext)
+  const { issues, setUserIssues, deleteIssue } = useContext(IssueContext)
+  const [ projects, setProjects ] = useState(null)
+  const [ currentProject, setCurrentProject ] = useState(null)
 
   if (!isLoggedIn) {
     console.log('no user, redirecting to login page', isLoggedIn, currentUser)
     return <Redirect to="/login" />
   }
+  
+  const getProjects = async (userId) => {
+    const { data } = await axios({
+      method: 'get',
+      url: `/api/project/${userId}`
+    })
+    console.log(data)
+    return data
+  }
 
-  const { issues, setUserIssues, deleteIssue } = useContext(IssueContext)
+  const testIssues = [
+    {id: 1, name: 'issue 1'},
+    {id: 2, name: 'issue 2'},
+    {id: 3, name: 'issue 3'}
+  ]
+  const testIssues2 = [
+    {id: 4, name: 'issue 4'},
+    {id: 5, name: 'issue 5'},
+    {id: 6, name: 'issue 6'}
+  ]
   
   useEffect(() => {
     setUserIssues()
+    setProjects(getProjects(currentUser.id))
+    if (projects) setCurrentProject(projects[0]) //for now
   }, [])
 
   return (
     <Box>
-      <Route>
-        {({location}) => {
-           const pathnames = location.pathname.split('/').filter((x) => x)
-          return (
-            <Breadcrumb>
-              {pathnames.map((val, idx) => {
-                const uri = `/${pathnames.slice(0, idx + 1).join('/')}`
-                
-                return (
-                  <BreadcrumbItem key={val}>
-                    <BreadcrumbLink as={Link} to={uri}>
-                      {BreadcrumbNameMap[uri]}
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                )
-              })}
-            </Breadcrumb>
-          )}}
-      </Route>
-      <Route>
-        <Issues
-          issues={issues}
-          setUserIssues={setUserIssues}
-          deleteIssue={deleteIssue}
-        />
-      </Route>
+      <Menu>
+        {console.log('HELLO')}
+        <MenuButton as={Button}>
+          {currentProject}
+        </MenuButton>
+        <MenuList>
+          <MenuItem>Project 1</MenuItem>
+        </MenuList>
+      </Menu>>
+      <Flex direction="row">
+        <Bucket bucketName="In Progress" issues={testIssues} />
+        <Bucket bucketName="Complete" issues={testIssues2} />
+      </Flex>
     </Box>
   )
 }

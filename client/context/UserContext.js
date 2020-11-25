@@ -4,7 +4,7 @@ import axios from 'axios'
 export const UserContext = React.createContext(null)
 
 export const UserProvider = (props) => {
-    const [currentUser, setCurrentUser] = useState({username: 'guest'})
+    const [currentUser, setCurrentUser] = useState({username: 'guest', id: null})
 
     const fetchUser = async (username, password) => {
         console.log('fetching user...')
@@ -17,7 +17,7 @@ export const UserProvider = (props) => {
                 }
             })
 
-            setCurrentUser({username: data.username})
+            setCurrentUser({username: data.username, id: data.id})
         } catch (err) {
             console.error(err)
         } 

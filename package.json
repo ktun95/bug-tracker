@@ -19,14 +19,14 @@
     "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
-    "@chakra-ui/core": "^0.8.0",
-    "@emotion/core": "^10.0.35",
-    "@emotion/styled": "^10.0.27",
+    "@chakra-ui/react": "^1.0.0",
+    "@emotion/react": "^11.1.1",
+    "@emotion/styled": "^11.0.0",
     "axios": "^0.19.2",
     "babel-loader": "^8.0.6",
-    "emotion-theming": "^10.0.27",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "framer-motion": "^2.9.4",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
@@ -38,7 +38,6 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
-    "@chakra-ui/react": "^1.0.0",
     "sequelize-cli": "^6.2.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"

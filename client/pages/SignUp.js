@@ -9,7 +9,7 @@ import {
     Input,
     Box,
     Button
-  } from "@chakra-ui/core";
+  } from "@chakra-ui/react";
 import { UserContext } from '../context/UserContext'
 
 const SignUp = ({props}) => {

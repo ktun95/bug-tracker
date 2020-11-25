@@ -32,7 +32,7 @@ const Issue = db.define('Issue', {
     description: {
         type: DataTypes.STRING
     },
-    resolved: { 
+    resolved: {
         type: DataTypes.BOOLEAN
     }
 })
@@ -46,13 +46,27 @@ const Project = db.define('Project', {
     }
 })
 
+const Column = db.define('Column', {
+    name: {
+        type: DataTypes.STRING
+    },
+    order: {
+        type: DataTypes.INTEGER
+    }
+})
+
+const UserProject = db.define('UserProject', {})
+
 User.belongsToMany(Issue, {through: 'UserIssue'})
 Issue.belongsToMany(User, {through: 'UserIssue'})
 
-User.belongsToMany(Project, {through: 'UserProject'})
-Project.belongsToMany(User, {through: 'UserProject'})
+Project.belongsToMany(User, {through: UserProject})
+User.belongsToMany(Project, {through: UserProject})
 Project.hasMany(Issue)
 Project.belongsTo(User, { as: 'Manager'})
+
+Project.hasMany(Column)
+Column.hasMany(Issue)
 
 // 3: Synchronize Database
 
@@ -61,5 +75,7 @@ Project.belongsTo(User, { as: 'Manager'})
 module.exports = {
     db,
     User,
-    Issue
+    Issue,
+    Project,
+    UserProject
 }; 

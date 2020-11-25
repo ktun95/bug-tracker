@@ -9,7 +9,7 @@ import {
     Input,
     Box,
     Button
-  } from "@chakra-ui/core";
+  } from "@chakra-ui/react";
 import { UserContext } from '../context/UserContext'
 
 const Login = ({props}) => {
@@ -54,7 +54,7 @@ const Login = ({props}) => {
                 <Button
                     // type="submit"
                     mt={4}
-                    variantColor="teal"
+                    colorScheme="teal"
                     // isLoading={formState.isSubmitting}
                     onClick={() => fetchUser(username, password)}
                 >

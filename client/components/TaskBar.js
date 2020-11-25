@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Stack, Button, Text } from "@chakra-ui/core";
+import { Box, Stack, Button, Text } from "@chakra-ui/react";
 import { UserContext } from '../context'
 
 const TaskBar = () => {

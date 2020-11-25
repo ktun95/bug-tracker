@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Flex, Box } from '@chakra-ui/core'
+import { Flex, Box } from '@chakra-ui/react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -36,11 +36,10 @@ const Main = () => {
                 </Route>
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={SignUp} />
-                <Route path="/dashboard" component={TaskBar} />
                 <IssueContext.Provider value={{issues, setUserIssues, deleteIssue}}>
                     <Box width="100%" padding="0.5rem">
                         <Route path="/dashboard/issues/create" component={IssueForm} />
-                        <Route exact path="/dashboard/issues" render={() => {
+                        <Route exact path="/dashboard/" render={() => {
                             return <Dashboard isLoggedIn={isLoggedIn} />
                         }} />
                     </Box>
